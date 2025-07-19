@@ -11,6 +11,11 @@ function App() {
         <li>
           <Link to="/ref-transition">RefTransition</Link>
         </li>
+        <li>
+          <Link to="/line-height-see-more">
+            lh 단위를 활용한 여러줄 말줄임 처리
+          </Link>
+        </li>
       </ol>
     </div>
   );
