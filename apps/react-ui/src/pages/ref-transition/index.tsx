@@ -3,13 +3,22 @@
 
 import { Link } from 'react-router';
 import { useFade } from './hooks/use-fade';
-import { useState } from 'react';
+import { useState, type CSSProperties } from 'react';
 
-const containerStyle = {
+const containerStyle: CSSProperties = {
   height: '600px',
 };
 
-const boxStyle = {
+const contentWrapperStyle: CSSProperties = {
+  marginTop: '32px',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: '16px',
+};
+
+const boxStyle: CSSProperties = {
   width: '100px',
   height: '100px',
   backgroundColor: 'red',
@@ -23,16 +32,18 @@ export const RefTransition = () => {
   return (
     <div style={containerStyle}>
       <h1>RefTransition</h1>
-      <button onClick={() => setShowElement((prev) => !prev)}>
-        {showElement ? 'hide' : 'show'}
-      </button>
       <Link to="/">← Back</Link>
-      <div>
-        {showElement && (
-          <div style={boxStyle} ref={fade({ duration: 300 })}>
-            HI
-          </div>
-        )}
+      <div style={contentWrapperStyle}>
+        <button onClick={() => setShowElement((prev) => !prev)}>
+          {showElement ? 'hide' : 'show'}
+        </button>
+        <div>
+          {showElement && (
+            <div style={boxStyle} ref={fade({ duration: 300 })}>
+              HI
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
