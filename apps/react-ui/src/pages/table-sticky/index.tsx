@@ -25,8 +25,6 @@ const topFixedStyle: CSSProperties = {
   zIndex: 10,
   width: '100%',
   height: '50px',
-  display: 'flex',
-  alignItems: 'center',
   paddingLeft: '10px',
 };
 
@@ -37,10 +35,7 @@ const tableHeaderStyle: CSSProperties = {
   backgroundColor: 'lightgray',
   zIndex: 10,
   height: '50px',
-  display: 'flex',
-  alignItems: 'center',
-  paddingLeft: '10px',
-  minWidth: '100%',
+  border: '1px solid black',
 };
 
 const tableStyle: CSSProperties = {
@@ -50,19 +45,13 @@ const tableStyle: CSSProperties = {
 
 const tableBodyStyle: CSSProperties = {
   backgroundColor: 'skyblue',
-  padding: '10px',
-  width: 'fit-content',
 };
 
 const tableCellStyle: CSSProperties = {
-  width: '100px',
-  minWidth: '100px',
-  maxWidth: '100px',
   padding: '10px',
   border: '1px solid black',
-  overflow: 'hidden',
-  textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
+  minWidth: '100px',
 };
 
 export const TableSticky = () => {
@@ -85,26 +74,29 @@ export const TableSticky = () => {
         </div>
         <div style={tableHeaderStyle}>sticky1</div>
         <div style={tableHeaderStyle}>sticky2</div>
-        <div style={tableStyle}>
-          <div style={tableHeaderStyle}>
-            {Array.from({ length: 20 }).map((_, index) => (
-              <div key={index} style={tableCellStyle}>
-                헤더{index}
-              </div>
-            ))}
-          </div>
-          <div style={tableBodyStyle}>
+        <table style={tableStyle}>
+          <thead style={tableHeaderStyle}>
+            <tr>
+              {Array.from({ length: 20 }).map((_, index) => (
+                <th key={index} style={tableCellStyle}>
+                  헤더{index}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody style={tableBodyStyle}>
             {Array.from({ length: 300 }).map((_, index) => (
-              <div key={index} style={{ display: 'flex' }}>
+              <tr key={index}>
                 {Array.from({ length: 20 }).map((_, index) => (
-                  <div key={index} style={tableCellStyle}>
+                  <td key={index} style={tableCellStyle}>
                     내용{index}
-                  </div>
+                    {index === 10 && '10101010101001010101010010'}
+                  </td>
                 ))}
-              </div>
+              </tr>
             ))}
-          </div>
-        </div>
+          </tbody>
+        </table>
       </div>
     </div>
   );
